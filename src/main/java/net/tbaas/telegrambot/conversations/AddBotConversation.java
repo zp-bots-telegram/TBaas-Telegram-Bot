@@ -1,7 +1,6 @@
 package net.tbaas.telegrambot.conversations;
 
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import net.tbaas.telegrambot.TBaaSBot;
 import net.tbaas.telegrambot.logger.LogLevel;
 import net.tbaas.telegrambot.logger.Logger;
@@ -145,12 +144,10 @@ public class AddBotConversation extends BotConversation {
 
     private void createBot(ConversationContext context) {
 
-        //TODO: Add URL
-        //TODO: Add API key
         int statusCode = 0;
         try {
-            statusCode = Unirest.post("//TODO: ADD URL HERE")
-                        .header("api_key", "WOO_API_KEY")
+            statusCode = Unirest.post(TBaaSBot.API_URL + "bot/create")
+                        .header("api_key", TBaaSBot.API_KEY)
                         .field("arguments", context.sessionDataBy("cliarguments"), "application/json")
                         .field("buildtool", "maven")
                         .field("language", "java")
@@ -166,6 +163,7 @@ public class AddBotConversation extends BotConversation {
         if(statusCode != 200) {
 
             context.getFrom().sendMessage("Something went wrong whilst trying to add your bot. Please try again later.");
+            Logger.log(LogLevel.WARNING, "A non-zero status code was returned when trying to create a bot with the TBaaS API. Status code was " + statusCode);
         }
 
         context.getConversation().end();

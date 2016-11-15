@@ -66,6 +66,9 @@ public class CommandManager implements Listener {
     public void onCommandMessageReceived(CommandMessageReceivedEvent event) {
 
         Command command = commands.get(event.getCommand());
-        command.execute(event);
+
+        if(command != null) {
+            command.execute(event);
+        }
     }
 }

@@ -146,9 +146,9 @@ public class AddBotConversation extends BotConversation {
 
         int statusCode = 0;
         try {
-            statusCode = Unirest.post(TBaaSBot.API_URL + "bot/create")
+            statusCode = Unirest.post(TBaaSBot.API_URL + "bot")
                         .header("api_key", TBaaSBot.API_KEY)
-                        .field("arguments", context.sessionDataBy("cliarguments"), "application/json")
+                        .field("arguments", ((String) context.sessionDataBy("cliarguments")).split(" "), "application/json")
                         .field("buildtool", "maven")
                         .field("language", "java")
                         .field("owner", getUser().getId())

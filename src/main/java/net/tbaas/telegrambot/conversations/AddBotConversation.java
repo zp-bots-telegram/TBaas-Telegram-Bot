@@ -15,6 +15,8 @@ import pro.zackpollard.telegrambot.api.conversations.prompt.RegexPrompt;
 import pro.zackpollard.telegrambot.api.conversations.prompt.TextPrompt;
 import pro.zackpollard.telegrambot.api.user.User;
 
+import java.util.Arrays;
+
 /**
  * @author Zack Pollard
  */
@@ -148,7 +150,7 @@ public class AddBotConversation extends BotConversation {
         try {
             statusCode = Unirest.post(TBaaSBot.API_URL + "bot")
                         .header("api_key", TBaaSBot.API_KEY)
-                        .field("arguments", ((String) context.sessionDataBy("cliarguments")).split(" "), "application/json")
+                        .field("arguments", Arrays.asList(((String) context.sessionDataBy("cliarguments")).split(" ")), "application/json")
                         .field("buildtool", "maven")
                         .field("language", "java")
                         .field("owner", getUser().getId())

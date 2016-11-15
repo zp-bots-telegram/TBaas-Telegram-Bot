@@ -27,5 +27,7 @@ public class TBaaSBot {
         instance = this;
         this.telegramBot = TelegramBot.login(botKey);
         this.commandManager = new CommandManager();
+
+        this.telegramBot.startUpdates(true);
     }
 }

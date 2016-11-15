@@ -6,6 +6,8 @@
 .idea/
 
 *.iml
+.DS_Store
+target/
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml

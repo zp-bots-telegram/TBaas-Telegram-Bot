@@ -10,7 +10,7 @@ public class AddBotCommand extends Command {
 
     public AddBotCommand() {
 
-        super("addbot");
+        super("addbot", "add");
     }
 
     @Override

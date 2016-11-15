@@ -159,7 +159,7 @@ public class AddBotConversation extends BotConversation {
                         .field("username", context.sessionDataBy("botusername"))
                         .asString()
                         .getStatus();
-        } catch (UnirestException e) {
+        } catch (Exception e) {
             Logger.log(LogLevel.ERROR, "An exception was thrown whilst trying to create the bot through the API", e);
         }
 
